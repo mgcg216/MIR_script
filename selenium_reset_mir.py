@@ -54,7 +54,7 @@ def mir_reset():
     click_timeout(driver, contin)
 
     print("ran reset at {}".format(time.time()))
-    print ('Current date/time: {}'.format(datetime.datetime.now()))
+    print('Current date/time: {}'.format(datetime.datetime.now()))
 
 
     # pause = driver.find_element_by_xpath(
@@ -69,8 +69,7 @@ def click_timeout(driver, button, secs=10):
     button.click()
     driver.implicitly_wait(10)
 
-if __name__ == '__main__':
-    # mir_reset()
+def schedule_reset():
     import schedule
 
     schedule.every().monday.at("06:00").do(mir_reset)
@@ -82,5 +81,9 @@ if __name__ == '__main__':
 
 
     while True:
-            schedule.run_pending()
-            time.sleep(1)
+        schedule.run_pending()
+        time.sleep(1*60*60)
+
+if __name__ == '__main__':
+    # mir_reset()
+    schedule_reset()
